@@ -1,0 +1,33 @@
+#Configuraciones para el mail.
+#Archivo de configuración para cuenta de correo.
+
+#Datos de prueba
+correo:
+  prueba:
+    usuario : 
+    password : 
+    correo : 
+    nombre : 
+  info:
+    usuario : 
+    password : 
+    correo : 
+    nombre : 
+  newsletter:
+    usuario : 
+    password : 
+    correo : 
+    nombre : 
+  ventas:
+    usuario : uetiko
+    password : 
+    correo : 
+#datos de configuración para correos
+smtp :
+  server : smtp.gmail.com
+  autentificacion : si
+  TLS : si
+  puerto : 465
+  SMTPAuth : true
+  NoSMTPAuth : false
+  SMTPSecure : ssl

@@ -1,0 +1,6 @@
+## YAML Template.
+---
+
+_home:
+  pattern: /home
+  defaults: { _controller: prueba:Index:index }
