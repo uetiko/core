@@ -1,9 +1,0 @@
-#Configuración de la base de datos
-base:
-  driver:   mysql
-  charset:  utf8
-  usuario:  letraslibres
-  passwd :  l3tr4sl1br3s
-  host :    127.0.0.1
-  puerto :  3306
-  dbname :  letras
