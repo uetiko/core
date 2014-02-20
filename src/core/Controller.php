@@ -1,5 +1,6 @@
 <?php
 namespace core;
+use core\http\Request;
 
 use \Exception;
 /**
@@ -12,9 +13,11 @@ use \Exception;
 abstract class Controller {
 
     private $module = NULL;
+    private $request = NULL;
 
-    public function __construct($module) {
+    public function __construct($module, Request $request) {
         $this->module = $module;
+        $this->request = $request;
     }
     /**
      * 
