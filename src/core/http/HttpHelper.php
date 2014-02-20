@@ -77,8 +77,8 @@ class HttpHelper extends Routing {
         $module = $arg[0];
         $controller = "\\appmodules\\" . $arg[0] . "\\controller\\" . $arg[1] . "Controller";
         $action = $arg[2] . "Action";
-        $obj = new $controller($module);
-        $obj->$action($request);
+        $obj = new $controller($module, $request);
+        $obj->$action();
     }
 
     /**
