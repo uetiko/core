@@ -1,3 +1,4 @@
 src/appmodules/*
 src/test/*
 src/resources/*
+.project
