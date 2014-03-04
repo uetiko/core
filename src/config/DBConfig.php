@@ -17,7 +17,7 @@ class DBConfig {
      */
     private $INSTANCE = NULL;
 
-    public function __construct() {
+    private function __construct() {
         $this->properties = \spyc\Spyc::YAMLLoad(realpath(__DIR__ . '/../resources/DBConfig.yml'));
     }
 

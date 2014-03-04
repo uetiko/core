@@ -10,7 +10,7 @@ use config\DBConfig;
  * Contiene métodos para consultar a la base de datos mediante pdo.
  * @package core
  * @subpackage datalayer
- * @version 0.1
+ * @version 0.2
  * @author Angel Barrientos <uetiko@nyxtechnology.com>
  */
 abstract class DatabaseObject {
@@ -19,7 +19,7 @@ abstract class DatabaseObject {
     private $config = null;
 
     public function __construct() {
-        $this->config = new DBConfig();
+        $this->config = DBConfig::getInstance();
         $this->cnn = $this->getIntsanceDBConnection();
     }
 

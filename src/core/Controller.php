@@ -1,7 +1,7 @@
 <?php
 namespace core;
 use core\http\Request;
-
+use core\settings\utils\Object;
 use \Exception;
 /**
  * 
@@ -10,7 +10,7 @@ use \Exception;
  * @version 0.1
  * @author Angel Barrientos <uetiko@nyxtechnology.com>
  */
-abstract class Controller {
+abstract class Controller extends Object{
 
     private $module = NULL;
     private $request = NULL;
