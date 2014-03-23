@@ -10,7 +10,7 @@ namespace core\settings\utils;
  * @version 0.1
  * @author Angel Barrientos <uetiko@gmail.com>
  */
- abstract class Object extends stdClass{
+ abstract class Object extends \stdClass{
  	/**
 	 * 
 	 */
