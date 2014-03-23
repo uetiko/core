@@ -60,14 +60,14 @@ class DBMysqliObject{
 		self::$cnn->close();
 	}
 	
-	final public static function execute($sql, $data, $fields = FALSE){
+	final public static function execute($sql, array $data, array $fields = array()){
 		self::$sql = $sql;
 		self::$data = $data;
 		self::conect();
 		self::prepareStmt();
 		self::setParams();
 		self::$stmt->execute();
-		if(FALSE != $fields){
+		if(count($fields) < 0){
 			self::setData($fields);
 		}else{
 			if(strpos(self::$sql, strtoupper('INSERT')) === 0){
