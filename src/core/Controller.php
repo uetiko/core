@@ -29,7 +29,7 @@ abstract class Controller extends Object{
         try {
             
         } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
+            error_log($exc->getTraceAsString(), 0);
         }
         $view = $this->viewExists($view);
         $pantilla = file_get_contents($view);
