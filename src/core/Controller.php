@@ -1,4 +1,4 @@
-<?php
+<?hh
 namespace core;
 use core\http\Request;
 use core\settings\utils\Object;
@@ -24,12 +24,12 @@ abstract class Controller extends Object{
      * @param string $view
      * @param array $vars
      */
-    protected final function render($view, array $vars = NULL) {
+    protected final function render(string $view, array $vars = NULL): int {
         $params = array();
         try {
             
         } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
+           error_log($exc->getTraceAsString());
         }
         $view = $this->viewExists($view);
         $pantilla = file_get_contents($view);
@@ -42,7 +42,7 @@ abstract class Controller extends Object{
         print $pantilla;
     }
 
-    private function viewExists($view) {
+    private function viewExists($view): ?string{
         $path = realpath(__DIR__ . "/../appmodules/{$this->module}/view/");
         $file = "$path/$view.html";
         if(file_exists($file)){
@@ -53,5 +53,3 @@ abstract class Controller extends Object{
     }
 
 }
-
-?>

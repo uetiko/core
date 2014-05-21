@@ -1,4 +1,4 @@
-<?php
+<?hh
 namespace core\settings\utils;
 
 /**
@@ -14,17 +14,17 @@ namespace core\settings\utils;
  	/**
 	 * 
 	 */
- 	public function getClass(){
+ 	public function getClass(): string {
  		return get_class($this);
  	}
 	/**
 	 * 
 	 */
-	public function equals(stdClass $obj){
+	public function equals(stdClass $obj): bool{
 		return ($this == $obj);
 	}
 	
-	public function toString(){
+	public function toString(): string {
 		return (string)$this;
 	}
  }
