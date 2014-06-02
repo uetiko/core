@@ -32,23 +32,13 @@ abstract class Controller extends Object{
         $params = array();
         $view = $this->viewExists($view);
         if(is_null($view)){
-            //no implement yet
+            header("HTTP/1.0 404 Not Found");
         }
-        try {
-            $pantilla = $this->getViewToCache($view);
-            if(!$pantilla){
-                $pantilla = file_get_contents($view);
-                $this->saveViewInCache($view, $pantilla);
-            }
-        } catch (Exception $exc) {
-            error_log($exc->getTraceAsString(), 0);
-        }
-
         if (settype($vars, 'array') && !is_null($vars)) {
             foreach ($vars as $key => $value) {
                 $params["{{ $key }}"] = $value;
             }
-            $pantilla = str_replace(array_keys($params), array_values($params), $pantilla);
+            $pantilla = str_replace(array_keys($params), array_values($params), $this->getView($view));
         }
         print $pantilla;
     }
@@ -79,6 +69,27 @@ abstract class Controller extends Object{
 
     private function getViewToCache($view){
         return $this->cache->getToCache($view, 'core');
+    }
+
+    /**
+     * @param $view
+     * @return array|null|string
+     */
+    private function getView($view){
+        $pantilla = '';
+        switch(true){
+            case 'devel' == $this->conf->getEnviroment():
+                $pantilla = file_get_contents($view);
+                break;
+            case 'prod' == $this->conf->getEnviroment():
+                $pantilla = $this->getViewToCache($view);
+                if(!$pantilla){
+                    $pantilla = file_get_contents($view);
+                    $this->saveViewInCache($view, $pantilla);
+                }
+                break;
+        }
+        return $pantilla;
     }
 
     public function __destruct(){

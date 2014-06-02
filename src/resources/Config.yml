@@ -1,0 +1,4 @@
+#Add this file in the gitignore
+config:
+  #values devel for develop and prod for production.
+  environment: devel
