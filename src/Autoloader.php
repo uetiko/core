@@ -46,6 +46,7 @@ class Autoloader {
         $basefolder = implode(DIRECTORY_SEPARATOR, array_reverse($base));
         $sourceFile = implode(DIRECTORY_SEPARATOR, array($basefolder, 'src'));
         $libfolder = implode(DIRECTORY_SEPARATOR, array($sourceFile, 'lib'));
+        $database = implode(DIRECTORY_SEPARATOR, array($sourceFile), 'orm');
 
         $path = '';
         $namespace = '';
@@ -62,12 +63,21 @@ class Autoloader {
         $inbase = implode(DIRECTORY_SEPARATOR, array($basefolder, $path));
         $insrc = implode(DIRECTORY_SEPARATOR, array($sourceFile, $path));
         $inlib = implode(DIRECTORY_SEPARATOR, array($libfolder, $path));
-        if (file_exists($inbase)) {
-            require_once $inbase;
-        } else if(file_exists($inlib)){
-            require_once $inlib;
-        } else if (file_exists($insrc)) {
-            require_once $insrc;
+        $orm = implode(DIRECTORY_SEPARATOR, array($database, $path));
+
+        switch(true){
+            case file_exists($inbase);
+                require_once($inbase);
+                break;
+            case file_exists($insrc):
+                require_once($insrc);
+                break;
+            case file_exists($inlib):
+                require_once($inlib);
+                break;
+            case file_exists($orm);
+                require_once($orm);
+                break;
         }
     }
 
