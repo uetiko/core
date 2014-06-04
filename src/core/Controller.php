@@ -1,27 +1,33 @@
 <?php
 namespace core;
 use core\http\Request;
-use core\settings\utils\Object;
 use core\settings\utils\Cache;
+use config\Config;
+use core\settings\utils\Object;
 use \Exception;
 /**
  *
  * @abstract
  * @package core
  * @version 0.1.6
- * @author Angel Barrientos <uetiko@gmail.com>
+ * @author Angel Barrientos <uetiko@nyxtechnology.com>
  */
 abstract class Controller extends Object{
 
     private $module = NULL;
-    private $request = NULL;
+	private $request = NULL;
     private $cache  = null;
     private $pantilla = null;
+    /**
+     * @var \config\Config
+     */
+    private $conf = null;
 
     public function __construct($module, Request $request) {
         $this->module = $module;
-        $this->request = $request;
+		$this->request = $request;
         $this->cache = Cache::getInstance();
+        $this->conf = Config::getInstance();
     }
     /**
      * Imprime la vista con los parametro
@@ -42,10 +48,10 @@ abstract class Controller extends Object{
         }
         print $pantilla;
     }
-    /**
-     * comprueba que la vista solicitada exista
-     * @var string $view
-     */
+	/**
+	 * comprueba que la vista solicitada exista
+	 * @var string $view
+	 */
     private function viewExists($view) {
         $path = realpath(__DIR__ . "/../appmodules/{$this->module}/view/");
         $file = "$path/$view.html";
@@ -55,16 +61,16 @@ abstract class Controller extends Object{
             return NULL;
         }
     }
-    /**
-     * Regresa el objeto core\http\Request
-     * @return core\http\Request $request
-     */
-    protected function getRequest(){
-        return $this->request;
-    }
+	/**
+	 * Regresa el objeto core\http\Request
+	 * @return core\http\Request $request
+	 */
+	protected function getRequest(){
+		return $this->request;
+	}
 
     private function saveViewInCache($view, $plantilla){
-        $this->cache->setToCache($view,$plantilla, 'core', 15);
+        return $this->cache->setToCache($view,$plantilla, 'core', 0);
     }
 
     private function getViewToCache($view){
@@ -85,15 +91,15 @@ abstract class Controller extends Object{
                 $pantilla = $this->getViewToCache($view);
                 if(!$pantilla){
                     $pantilla = file_get_contents($view);
-                    $this->saveViewInCache($view, $pantilla);
+                    $pantilla = $this->saveViewInCache($view, $pantilla);
+                    $pantilla = $this->getViewToCache($view);
                 }
                 break;
         }
         return $pantilla;
     }
 
-    public function __destruct(){
+	public function __destruct(){
 
-    }
-
+	}
 }

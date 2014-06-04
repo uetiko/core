@@ -50,7 +50,7 @@ class Cache extends Object{
         if(is_null($expirtion)){
             $expirtion = 0;
         }
-        $this->memcache->set("{$prefix}_{$k}", $v, $expirtion);
+        return $this->memcache->set("{$prefix}_{$k}", $v, false, $expirtion);
     }
 
     /**

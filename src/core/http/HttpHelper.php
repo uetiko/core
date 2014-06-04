@@ -3,7 +3,7 @@
 namespace core\http;
 
 use core\Routing;
-use core\http\Request;
+
 use \Exception;
 /**
  * Description of HttpHelper
@@ -75,11 +75,11 @@ class HttpHelper extends Routing {
         }
         $arg = explode(':', $defaults['_controller']);
         $module = $arg[0];
-        $controller = "\\appmodules\\" . $arg[0] . "\\controller\\" . $arg[1] . "Controller";
+        $controller = '\\appmodules\\' . $arg[0] . "\\controller\\" . $arg[1] . "Controller";
         $action = $arg[2] . "Action";
         $obj = new $controller($module, $request);
         $obj->$action();
-    }
+	}
 
     /**
      * 
@@ -87,6 +87,7 @@ class HttpHelper extends Routing {
      * @return array
      */
     private function doNotTrustTheUser(array $param) {
+    	$result = array();
         foreach ($param as $key => $value) {
             $result[$key] = htmlentities(strip_tags($value));
         }

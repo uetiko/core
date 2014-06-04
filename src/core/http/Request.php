@@ -5,7 +5,7 @@ namespace core\http;
  *
  * @package core
  * @subpackage http
- * @version 0.1
+ * @version 0.1.13
  * @author Angel Barrientos <uetiko@nyxtechnology.com>
  */
 class Request {
@@ -19,6 +19,22 @@ class Request {
     }
     public function getArrayAttributes(){
         return $this->attributes;
+    }
+
+    public function getServerUrl(){
+        return "http://{$_SERVER['SERVER_NAME']}";
+    }
+    
+    public function getRedirectUrl(){
+        return $_SERVER['REDIRECT_URL'];
+    }
+
+    public function setRedirectUrl($url){
+        $_SERVER['REDIRECT_URL'] = $url;
+    }
+
+    public function getRequestUrl(){
+        return $_SERVER['REQUEST_URI'];
     }
 }
 

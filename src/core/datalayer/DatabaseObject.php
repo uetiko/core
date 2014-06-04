@@ -94,13 +94,22 @@ abstract class DatabaseObject {
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
     }
-
-    final protected function executePrepareStatement($sql, array $options) {
+	/**
+	 * 
+	 * 
+	 */
+    final protected function executePrepareStatement($sql, array $options, $insert = FALSE) {
         $stmt = $this->cnn->prepare($sql);
         foreach ($options as $key => $value) {
             $stmt->bindParam($key, $value);
         }
+		$this->cnn->beginTransaction();
         $result = $stmt->execute($options);
+		if($insert){
+			$this->cnn->commit();
+			unset($stmt);
+			return $this->cnn->lastInsertId();
+		}
         unset($stmt);
         return $result;
         

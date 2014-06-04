@@ -3,6 +3,7 @@ namespace src;
 /**
  * Clase de Autocarga de clases bajo demanda capaz de leer namespaces y la
  * convencion de ZendFramework 1
+ * @version 0.3
  * @author Angel Barrientos <uetiko@gmail.com>
  */
 class Autoloader {
@@ -46,7 +47,7 @@ class Autoloader {
         $basefolder = implode(DIRECTORY_SEPARATOR, array_reverse($base));
         $sourceFile = implode(DIRECTORY_SEPARATOR, array($basefolder, 'src'));
         $libfolder = implode(DIRECTORY_SEPARATOR, array($sourceFile, 'lib'));
-        $database = implode(DIRECTORY_SEPARATOR, array($sourceFile), 'orm');
+        $database = implode(DIRECTORY_SEPARATOR, array($sourceFile, 'orm'));
 
         $path = '';
         $namespace = '';
