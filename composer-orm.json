@@ -1,0 +1,14 @@
+//Composer para ORM's
+{
+    "config": {
+        "vendor-dir" : "src/orm"
+    },
+    "require": {
+        "illuminate/database": "v4.2.1",
+        "doctrine/dbal": "v2.4.2",
+        "doctrine/orm": "v2.4.2",
+        "doctrine/common": "v2.4.2"
+    }
+}
+
+

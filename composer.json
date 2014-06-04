@@ -1,0 +1,11 @@
+//Composer para librerias que pueden ser de utilidad
+{
+    "config": {
+        "vendor-dir": "src/lib"
+    },
+    "require":{
+        "swiftmailer/swiftmailer": "v5.2.0",
+        "peej/tonic": "v3.2",
+        "facebook/php-sdk": "v3.2.3"
+    }
+}
