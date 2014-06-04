@@ -1,4 +1,6 @@
 src/appmodules/*
 src/test/*
 src/resources/*
+src/lib/*
+src/orm
 .project
